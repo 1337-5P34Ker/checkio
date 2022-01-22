@@ -1,25 +1,22 @@
 import assert from "assert";
 
-//In a given array the first element should become the last one. An empty array or array with only one element should stay the same.
+//You have a number and you need to determine which digit in this number is the biggest.
 
-
-
-function replaceFirst(values: number[]): number[] {
+function maxDigit(value: number): number {
     // your code here
-    if (values.length > 1) {
-        let first: number = Number(values.shift());
-        values.push(first);
-    }
-
-    return values;
+    let x = value.toString(10).split('').map(Number);
+    let biggest:number  = x.sort((a,b) => b-a)[0];
+    return biggest;
 }
 
 console.log('Example:');
-console.log(replaceFirst([1, 2, 3, 4]));
+
 
 // These "asserts" are used for self-checking
-assert.deepEqual(replaceFirst([1, 2, 3, 4]), [2, 3, 4, 1]);
-assert.deepEqual(replaceFirst([1]), [1]);
-assert.deepEqual(replaceFirst([]), []);
+assert.equal(maxDigit(0), 0);
+assert.equal(maxDigit(52), 5);
+assert.equal(maxDigit(634), 6);
+assert.equal(maxDigit(1), 1);
+assert.equal(maxDigit(10000), 1);
 
 console.log("Coding complete? Click 'Check' to earn cool rewards!");
