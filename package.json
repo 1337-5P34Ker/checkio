@@ -1,0 +1,31 @@
+{
+  "name": "js.check.io",
+  "version": "1.0.0",
+  "description": "Übungen aus js.check.io",
+  "main": "index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/1337-5P34Ker/checkio.git"
+  },
+  "keywords": [
+    "Praktikum",
+    "Typescript"
+  ],
+  "author": "Rocco Hundertmark",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/1337-5P34Ker/checkio/issues"
+  },
+  "homepage": "https://github.com/1337-5P34Ker/checkio#readme",
+  "dependencies": {
+    "assert": "^2.0.0",
+    "typescript": "^4.5.5"
+  },
+  "devDependencies": {
+    "@types/assert": "^1.5.6",
+    "ts-node": "^10.4.0"
+  }
+}
