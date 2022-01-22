@@ -1,19 +1,25 @@
 import assert from "assert";
 
-// Check if a given string has all symbols in upper case. If the string is empty or doesn't have any letter in it - function should return True.
+//In a given array the first element should become the last one. An empty array or array with only one element should stay the same.
 
-function isAllUpper(text: string): boolean {
+
+
+function replaceFirst(values: number[]): number[] {
     // your code here
-    return text === text.toUpperCase();
+    if (values.length > 1) {
+        let first: number = Number(values.shift());
+        values.push(first);
+    }
+
+    return values;
 }
 
 console.log('Example:');
-console.log(isAllUpper('ALL UPPER'));
+console.log(replaceFirst([1, 2, 3, 4]));
 
 // These "asserts" are used for self-checking
-assert.equal(isAllUpper('ALL UPPER'), true);
-assert.equal(isAllUpper('all lower'), false);
-assert.equal(isAllUpper('mixed UPPER and lower'), false);
-assert.equal(isAllUpper(''), true);
+assert.deepEqual(replaceFirst([1, 2, 3, 4]), [2, 3, 4, 1]);
+assert.deepEqual(replaceFirst([1]), [1]);
+assert.deepEqual(replaceFirst([]), []);
 
 console.log("Coding complete? Click 'Check' to earn cool rewards!");
