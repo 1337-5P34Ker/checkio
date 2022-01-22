@@ -1,22 +1,24 @@
 import assert from "assert";
 
-//You have a number and you need to determine which digit in this number is the biggest.
-
-function maxDigit(value: number): number {
+function splitPairs(text: string): string[] {
     // your code here
-    let x = value.toString(10).split('').map(Number);
-    let biggest:number  = x.sort((a,b) => b-a)[0];
-    return biggest;
+    if(text.length > 0 && text.length % 2 !== 0) text += '_';
+    const array = text.split('');
+    const result: string[] = [];
+    while(array.length> 0){
+        result.push(array.splice(0,2).join(''));
+    }
+    return result;
 }
 
 console.log('Example:');
-
+console.log(splitPairs('abcd'));
 
 // These "asserts" are used for self-checking
-assert.equal(maxDigit(0), 0);
-assert.equal(maxDigit(52), 5);
-assert.equal(maxDigit(634), 6);
-assert.equal(maxDigit(1), 1);
-assert.equal(maxDigit(10000), 1);
+assert.deepEqual(splitPairs('abcd'), ['ab', 'cd']);
+assert.deepEqual(splitPairs('abc'), ['ab', 'c_']);
+assert.deepEqual(splitPairs('abcdf'), ['ab', 'cd', 'f_']);
+assert.deepEqual(splitPairs('a'), ['a_']);
+assert.deepEqual(splitPairs(''), []);
 
 console.log("Coding complete? Click 'Check' to earn cool rewards!");
