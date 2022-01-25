@@ -1,28 +1,18 @@
 import assert from "assert";
 
-function nearestValue(values: number[], search: number): number {
-    // your code here
-
-    let bestMatch = 1000000;
-    values.sort((a, b) => a - b).forEach(v => {
-        if (Math.abs(v - search) < Math.abs(bestMatch - search)) {
-            bestMatch = v;
-        }
-    })
-    return bestMatch;
+function betweenMarkers(line: string, left: string, right: string): string {
+    line = line.substring(line.indexOf(left)+1);
+    line = line.substring(0,line.indexOf(right));
+    return line;
 }
 
 console.log('Example:');
-console.log(nearestValue([4, 7, 10, 11, 12, 17], 9));
+console.log(betweenMarkers('What is >apple<', '>', '<'));
 
 // These "asserts" are used for self-checking
-assert.equal(nearestValue([4, 7, 10, 11, 12, 17], 9), 10);
-assert.equal(nearestValue([4, 7, 10, 11, 12, 17], 8), 7);
-assert.equal(nearestValue([4, 8, 10, 11, 12, 17], 9), 8);
-assert.equal(nearestValue([4, 9, 10, 11, 12, 17], 9), 9);
-assert.equal(nearestValue([4, 7, 10, 11, 12, 17], 0), 4);
-assert.equal(nearestValue([4, 7, 10, 11, 12, 17], 100), 17);
-assert.equal(nearestValue([5, 10, 8, 12, 89, 100], 7), 8);
-assert.equal(nearestValue([-1, 2, 3], 0), -1);
+assert.equal(betweenMarkers('What is >apple<', '>', '<'), 'apple');
+assert.equal(betweenMarkers('What is [apple]', '[', ']'), 'apple');
+assert.equal(betweenMarkers('What is ><', '>', '<'), '');
+assert.equal(betweenMarkers('[an apple]', '[', ']'), 'an apple');
 
 console.log("Coding complete? Click 'Check' to earn cool rewards!");
