@@ -1,18 +1,19 @@
 import assert from "assert";
 
-function betweenMarkers(line: string, left: string, right: string): string {
-    line = line.substring(line.indexOf(left)+1);
-    line = line.substring(0,line.indexOf(right));
-    return line;
+function correctSentence(text: string): string {
+    const arr = Array.from(text)
+    let firstLetter: string = arr.shift()||'';
+    arr.unshift(firstLetter.toUpperCase());
+    text = text.lastIndexOf('.') == text.length-1 ? arr.join('') : arr.join('') + '.';
+    return text;
 }
 
 console.log('Example:');
-console.log(betweenMarkers('What is >apple<', '>', '<'));
+console.log(correctSentence('greetings, friends'));
 
 // These "asserts" are used for self-checking
-assert.equal(betweenMarkers('What is >apple<', '>', '<'), 'apple');
-assert.equal(betweenMarkers('What is [apple]', '[', ']'), 'apple');
-assert.equal(betweenMarkers('What is ><', '>', '<'), '');
-assert.equal(betweenMarkers('[an apple]', '[', ']'), 'an apple');
+assert.equal(correctSentence('greetings, friends'), 'Greetings, friends.');
+assert.equal(correctSentence('Greetings, friends'), 'Greetings, friends.');
+assert.equal(correctSentence('Greetings, friends.'), 'Greetings, friends.');
 
 console.log("Coding complete? Click 'Check' to earn cool rewards!");
