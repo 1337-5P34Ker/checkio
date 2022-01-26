@@ -1,21 +1,37 @@
 import assert from "assert";
 
-function firstWord(text: string): string {
-    text = text.trim().replace(',','').replace(/\./g, ' ').trim();
+interface Stock {
+    name: string,
+    price: number,
+};
 
-    let words = text.split(' ');
-    return words[0] ;
+function biggerPrice(limit: number, data: Stock[]): Stock[] {
+    let sortedByPrice =  data.sort((a,b) => b.price - a.price )
+
+
+
+    return sortedByPrice.slice(0, limit);
 }
 
-
 console.log('Example:')
-console.log(firstWord("Hello world"))
+console.log(biggerPrice(2, [
+    {"name": "bread", "price": 100},
+    {"name": "wine", "price": 138},
+    {"name": "meat", "price": 15},
+    {"name": "water", "price": 1}
+]))
 
-// These "asserts" using for self-checking and not for auto-testing
-assert.equal(firstWord("Hello world"), "Hello")
-assert.equal(firstWord(" a word "), "a")
-assert.equal(firstWord("don't touch it"), "don't")
-assert.equal(firstWord("greetings, friends"), "greetings")
-assert.equal(firstWord("... and so on ..."), "and")
-assert.equal(firstWord("hi"), "hi")
-console.log("Coding complete? Click 'Check' to earn cool rewards!");
+assert.deepEqual(biggerPrice(2, [
+    {"name": "bread", "price": 100},
+    {"name": "wine", "price": 138},
+    {"name": "meat", "price": 15},
+    {"name": "water", "price": 1}
+]), [
+    {"name": "wine", "price": 138},
+    {"name": "bread", "price": 100}
+])
+assert.deepEqual(biggerPrice(1, [
+    {"name": "pen", "price": 5},
+    {"name": "whiteboard", "price": 170}
+]), [{"name": "whiteboard", "price": 170}])
+console.log("Coding complete? Click 'Check' to review your tests and earn cool rewards!");
