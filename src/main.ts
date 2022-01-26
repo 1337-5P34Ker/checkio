@@ -1,28 +1,31 @@
 import assert from "assert";
 
-function sumNumbers(test: string): number {
-    const words = test.split(' ');
-    let sum = 0;
+function threeWords(text: string): boolean {
+
+    let words = text.split(' ');
+
+    let wordsCount = 0;
+    let already3Found = false;
+
     words.forEach(word => {
-        if(!isNaN(Number(word))) {
-            sum += Number(word);
+        if(isNaN(Number(word))){
+            wordsCount++
+            if(wordsCount > 2) {
+                already3Found = true;
+            }
+        } else {
+            wordsCount = 0
         }
-    });
-    return sum;
+    })
+    return already3Found;
 }
 
-console.log('Example:');
-console.log(sumNumbers('hi'));
+console.log('Example:')
+console.log(threeWords("Hello World hello"))
 
-// These "asserts" are used for self-checking
-assert.equal(sumNumbers('hi'), 0);
-assert.equal(sumNumbers('who is 1st here'), 0);
-assert.equal(sumNumbers('my numbers is 2'), 2);
-assert.equal(sumNumbers('This picture is an oil on canvas '
- + 'painting by Danish artist Anna '
- + 'Petersen between 1845 and 1910 year'), 3755);
-assert.equal(sumNumbers('5 plus 6 is'), 11);
-assert.equal(sumNumbers(''), 0);
-
-console.log("Coding complete? Click 'Check' to earn cool rewards!");
-    
+assert.equal(threeWords("Hello World hello"), true);
+assert.equal(threeWords("He is 123 man"), false);
+assert.equal(threeWords("1 2 3 4"), false);
+assert.equal(threeWords("bla bla bla bla"), true);
+assert.equal(threeWords("Hi"), false);
+console.log("Coding complete? Click 'Check' to review your tests and earn cool rewards!");
