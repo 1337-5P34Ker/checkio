@@ -1,24 +1,31 @@
-import assert from "assert";
+"use strict";
 
-/*
-You are given a non-empty list of integers (X). For this task, you should return a list consisting of only the non-unique elements 
-in this list. To do so you will need to remove all unique elements (elements which are contained in a given list only once). 
-When solving this task, do not change the order of the list. 
+import { createStringLiteralFromNode } from "typescript";
 
-Example: [1, 2, 3, 1, 3] 1 and 3 non-unique elements and result will be [1, 3, 1, 3].
+function popularWords(text: string, words: string[]) {
 
-*/
+    let result: { [k: string]: any } = {};;
 
+    words.forEach(word => {
+        result[word] = 0;
+    })
 
-function nonUniqueElements(data: number[]): number[] {
-    return data.filter(d=> data.lastIndexOf(d) != data.indexOf(d));
+    let strings = text.toLowerCase().replace(/\s/g, ' ').trim().split(' ');
+
+    strings.forEach(s => {
+        if (result.hasOwnProperty(s)) {
+            result[s.toLocaleLowerCase()] += 1;
+        }
+    });
+
+    // your code here
+    return result;
 }
 
-console.log('Example:')
-console.log(nonUniqueElements([1, 2, 3, 1, 3]))
 
-assert.deepEqual(nonUniqueElements([1, 2, 3, 1, 3]), [1, 3, 1, 3]);
-assert.deepEqual(nonUniqueElements([1, 2, 3, 4, 5]), []);
-assert.deepEqual(nonUniqueElements([5, 5, 5, 5, 5]), [5, 5, 5, 5, 5]);
-assert.deepEqual(nonUniqueElements([10, 9, 10, 10, 9, 8]), [10, 9, 10, 10, 9]);
-console.log("Coding complete? Click 'Check' to review your tests and earn cool rewards!");
+console.log('Example:')
+console.log(popularWords(`
+When I was One
+I had just begun
+When I was Two
+I was nearly new`, ['i', 'was', 'three', 'near']))
