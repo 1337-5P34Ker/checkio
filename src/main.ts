@@ -1,50 +1,30 @@
 import assert from "assert";
 
 /*
-Sort Array by Element Frequency
-Sort the given Array so that its elements end up in the decreasing frequency order, that is, 
-the number of times they appear in elements. 
-If two elements have the same frequency, they should end up in the same order as the first appearance in the Array.
+Split list
+
+You have to split a given array into two arrays. If it has an odd amount of elements, 
+then the first array should have more elements. 
+If it has no elements, then two empty arrays should be returned.
 */
 
-interface elements {
-    order: number;
-    value: any;
-    count: number;
+function splitList(values: number[]):number[][] {
+    let splitBy = Math.ceil(values.length/2);
+    let left: number[] = values.filter((v,i) => i < splitBy);
+    let right: number[] = values.filter((v,i) => i >= splitBy);
 
-}
-
-function frequencySort(items: any[]): any[] {
-    let lastOrder = 0;
-    let frequencies: elements[] = [];
-    items.forEach(item => {
-        let existing = frequencies.find(x => x.value == item);
-        if (existing) {
-            frequencies = frequencies.filter(i => i != existing);
-            frequencies.push({ order: existing.order, value: existing.value, count: existing.count + 1 });
-        } else {
-            frequencies.push({ order: ++lastOrder, value: item, count: 1 })
-        }
-    });
-    const sortedArray = frequencies.sort((a, b) => b.count - a.count || a.order - b.order);
-    let result: any[] = [];
-    sortedArray.forEach(item => {
-        for(let i = 0; i<item.count; i++){
-            result.push(item.value);
-        }
-    })
-    return result;
+    return [left, right];
 }
 
 console.log('Example:');
-console.log(frequencySort([4, 6, 2, 2, 6, 4, 4, 4]));
+console.log(splitList([1, 2, 3, 4, 5, 6]));
 
-// These "asserts" are used for self-checking and not for an auto-testing
-
-assert.deepEqual(frequencySort([4, 6, 2, 2, 6, 4, 4, 4]), [4, 4, 4, 4, 6, 6, 2, 2]);
-assert.deepEqual(frequencySort(['bob', 'bob', 'carl', 'alex', 'bob']), ['bob', 'bob', 'bob', 'carl', 'alex']);
-assert.deepEqual(frequencySort([17, 99, 42]), [17, 99, 42]);
-assert.deepEqual(frequencySort([]), []);
-assert.deepEqual(frequencySort([1]), [1]);
+// These "asserts" are used for self-checking
+assert.deepEqual(splitList([1, 2, 3, 4, 5, 6]), [[1, 2, 3], [4, 5, 6]]);
+assert.deepEqual(splitList([1, 2, 3]), [[1, 2], [3]]);
+assert.deepEqual(splitList([1, 2, 3, 4, 5]), [[1, 2, 3], [4, 5]]);
+assert.deepEqual(splitList([1]), [[1], []]);
+assert.deepEqual(splitList([]), [[], []]);
 
 console.log("Coding complete? Click 'Check' to earn cool rewards!");
+    
