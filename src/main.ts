@@ -1,30 +1,21 @@
 import assert from "assert";
 
-/*
-Split list
+function allTheSame(elements: any[]): boolean {
 
-You have to split a given array into two arrays. If it has an odd amount of elements, 
-then the first array should have more elements. 
-If it has no elements, then two empty arrays should be returned.
-*/
 
-function splitList(values: number[]):number[][] {
-    let splitBy = Math.ceil(values.length/2);
-    let left: number[] = values.filter((v,i) => i < splitBy);
-    let right: number[] = values.filter((v,i) => i >= splitBy);
-
-    return [left, right];
+    // your code here
+    return elements.length == 0 || elements.every(item => elements.indexOf(item) === 0);
 }
 
-console.log('Example:');
-console.log(splitList([1, 2, 3, 4, 5, 6]));
 
-// These "asserts" are used for self-checking
-assert.deepEqual(splitList([1, 2, 3, 4, 5, 6]), [[1, 2, 3], [4, 5, 6]]);
-assert.deepEqual(splitList([1, 2, 3]), [[1, 2], [3]]);
-assert.deepEqual(splitList([1, 2, 3, 4, 5]), [[1, 2, 3], [4, 5]]);
-assert.deepEqual(splitList([1]), [[1], []]);
-assert.deepEqual(splitList([]), [[], []]);
+console.log('Example:')
+console.log(allTheSame([1, 1, 1]))
 
+// These "asserts" are used for self-checking and not for an auto-testing
+
+assert.equal(allTheSame([1, 1, 1]), true)
+assert.equal(allTheSame([1, 2, 1]), false)
+assert.equal(allTheSame(['a', 'a', 'a']), true)
+assert.equal(allTheSame([]), true)
+assert.equal(allTheSame([1]), true)
 console.log("Coding complete? Click 'Check' to earn cool rewards!");
-    
